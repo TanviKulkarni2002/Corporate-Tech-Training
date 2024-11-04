@@ -1,0 +1,30 @@
+
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="SeleniumTesting" parallel="false">
+    <test name="UserRegistrationTests">
+        <classes>
+            <class name="com.ncs.PositiveTestcases.UserRegistration"/>
+
+            <!-- <class name="com.ncs.NegativeTestcases.FailedUserRegistration"/> -->
+        </classes>
+    </test>
+
+    <test name="UserLoginTests">
+        <classes>
+            <class name="com.ncs.PositiveTestcases.UserLogin"/>
+            <!-- <class name="com.ncs.NegativeTestcases.FailedUserLogin"/> -->
+        </classes>
+    </test>
+    <test name="BookVideoCallTests">
+        <classes>
+            <class name="com.ncs.PositiveTestcases.BookVideoCall"/>
+            <!-- <class name="com.ncs.NegativeTestcases.FailedBookVideoCall"/> -->
+        </classes>
+    </test>
+    <test name="LehengaCholiTests">
+        <classes>
+            <class name="com.ncs.PositiveTestcases.LehenhaCholiModule"/>
+            <!-- <class name="com.ncs.NegativeTestcases.FailedLehengaCholiModule"/> -->
+        </classes>
+    </test>
+</suite>

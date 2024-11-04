@@ -1,0 +1,36 @@
+UI Manual Testing
+
+Successfully DONE
+- User Registration: Email: tanvi.kulkarni@in.ncs-i.com, Password: saree-lover21
+- User Login: Email: tanvi.kulkarni@in.ncs-i.com, Password: saree-lover21
+- Book a Video Call: successfully completed
+- Lehenga Choli Module completed.
+- Kurti module completed.
+
+
+LEFT/ DOUBTS/ ERRORS
+- Book a video call page is behaving irregularly. It may or may not load the checkout page even when valid details are entered.
+- Outfits and Occasion is compulsory field and when invalid input given it still loads checkout page in Book Video call appointment module.
+- User Registration happens even when phone no. is invalid.
+
+****************************************************************************************************
+
+UI Automation Testing
+
+A) Selenium
+Successfully DONE
+- User Registration: Email: tanvi.kulkarni@in.ncs-i.com, Password: saree-lover21: successfully completed.
+- User Login: Email: tanvi.kulkarni@in.ncs-i.com, Password: saree-lover21,successfully completed.
+- Book a Video Call: successfully completed
+- Lehenga Choli: {Apply button on each filter left} isEnabled(), isDisplayed() etc.
+
+
+
+LEFT/ DOUBTS/ ERRORS
+- Checkout page always reloads a lot of times.
+- Outfits and Occasion is compulsory field and when invalid input given it still loads checkout page in Book Video call appointment module.
+
+B) Cucumber
+Successfully DONE
+- View Kurti options: successfully completed.
+- Filter Price ranges and display kurti: successfully completed.

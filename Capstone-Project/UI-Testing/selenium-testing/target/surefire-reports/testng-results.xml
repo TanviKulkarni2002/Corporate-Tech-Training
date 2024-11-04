@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2024-10-25T17:54:19 IST" name="SeleniumTesting" finished-at="2024-10-25T17:54:42 IST" duration-ms="23115">
+    <groups>
+    </groups>
+    <test started-at="2024-10-25T17:54:19 IST" name="UserRegistrationTests" finished-at="2024-10-25T17:54:19 IST" duration-ms="8">
+    </test> <!-- UserRegistrationTests -->
+    <test started-at="2024-10-25T17:54:19 IST" name="UserLoginTests" finished-at="2024-10-25T17:54:42 IST" duration-ms="23014">
+      <class name="com.ncs.PositiveTestcases.UserLogin">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.ncs.PositiveTestcases.UserLogin@1700915]" started-at="2024-10-25T17:54:19 IST" name="setUp" finished-at="2024-10-25T17:54:29 IST" duration-ms="9717" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="successfulUserLogin()[pri:0, instance:com.ncs.PositiveTestcases.UserLogin@1700915]" started-at="2024-10-25T17:54:29 IST" name="successfulUserLogin" finished-at="2024-10-25T17:54:42 IST" duration-ms="12550" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- successfulUserLogin -->
+        <test-method is-config="true" signature="shutDown()[pri:0, instance:com.ncs.PositiveTestcases.UserLogin@1700915]" started-at="2024-10-25T17:54:42 IST" name="shutDown" finished-at="2024-10-25T17:54:42 IST" duration-ms="712" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- shutDown -->
+      </class> <!-- com.ncs.PositiveTestcases.UserLogin -->
+    </test> <!-- UserLoginTests -->
+    <test started-at="2024-10-25T17:54:42 IST" name="BookVideoCallTests" finished-at="2024-10-25T17:54:42 IST" duration-ms="0">
+    </test> <!-- BookVideoCallTests -->
+    <test started-at="2024-10-25T17:54:42 IST" name="LehengaCholiTests" finished-at="2024-10-25T17:54:42 IST" duration-ms="0">
+    </test> <!-- LehengaCholiTests -->
+  </suite> <!-- SeleniumTesting -->
+</testng-results>
