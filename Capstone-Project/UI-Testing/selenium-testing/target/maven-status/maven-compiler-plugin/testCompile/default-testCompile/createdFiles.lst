@@ -1,0 +1,8 @@
+com\ncs\PositiveTestcases\BookVideoCall.class
+com\ncs\PositiveTestcases\LehengaCholiModule.class
+com\ncs\PositiveTestcases\UserRegistration.class
+com\ncs\NegativeTestcases\FailedBookVideoCall.class
+com\ncs\NegativeTestcases\FailedLehengaCholiModule.class
+com\ncs\PositiveTestcases\UserLogin.class
+com\ncs\NegativeTestcases\FailedUserLogin.class
+com\ncs\NegativeTestcases\FailedUserRegistration.class

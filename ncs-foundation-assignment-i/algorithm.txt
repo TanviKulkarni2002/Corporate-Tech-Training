@@ -1,0 +1,6 @@
+1) start
+2) read length and breadth
+3) check if length<=0 or breadth<=0: print("Invalid Values"), go to (5)
+else: perimeter = 2*(length+breadth)
+4) print perimeter
+5) end

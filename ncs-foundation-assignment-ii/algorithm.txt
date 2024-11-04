@@ -1,0 +1,11 @@
+1) start
+2) read num1, num2,choice
+3) print ("MENU\n 1.Add\n 2.Subtract\n 3.Multiply\n 4.Divide)
+4) read choice
+5) if choice not in (1,4): print ("Incorrect Choice"), go to (7)
+6) if choice==1: ans=num1+num2, print ans
+elif choice==2: ans=num1-num2, print ans
+elif choice==3: ans=num1*num2, print ans
+else: if num2==0: print ("Undefined"), go to (7)
+    else ans=num1/num2, print ans
+7) end

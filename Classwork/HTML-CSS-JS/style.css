@@ -1,0 +1,18 @@
+@import url("'main.css");
+h1{
+    color: yellow;
+}
+
+h5{
+    color: chocolate;
+}
+
+a:link{
+    color:cornflowerblue;
+}
+a:visited{
+    color:aqua;
+}
+a:hover{
+    color: blueviolet;
+}

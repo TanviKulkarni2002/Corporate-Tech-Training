@@ -1,0 +1,9 @@
+h1{
+    text-align: center;
+}
+body{
+    background-color: bisque;
+    border-color: black;
+    border-style:ridge;
+    text-align: center;
+}

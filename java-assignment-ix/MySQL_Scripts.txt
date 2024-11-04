@@ -1,0 +1,18 @@
+// Run these commands in MySQL Workbench or CLI before running the code.
+
+show databases;
+use stack_route;
+
+create table league (
+    -> leagueId int,
+    -> year int,
+    -> season varchar(50),
+    -> title varchar(50));
+
+alter table league
+    -> add primary key (leagueId);
+
+
+*** Run the below commands to only drop the rows while preserving the constraints and fields of the table.
+*** Run it only after executing the LeagueClient.java file.
+truncate table league;

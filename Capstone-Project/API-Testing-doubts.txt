@@ -1,0 +1,12 @@
+POSTMAN
+PRIORITY: HIGH
+1. verify-password-reset-token: token value from where? (not tested)
+PRIORITY: LOW
+1. retrieve profile info: 500 status code not occurring as server is working fine.
+get-all-notes: 500 not occurring as server is working fine.
+2. delete-account: 500 not occurring as server is working fine.
+1. verify-password-reset-token: 500 not occurring as server is working fine.
+
+REST Assured
+PRIORITY: HIGH
+1. verify password reset token: not tested (token value needed)

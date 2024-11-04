@@ -1,0 +1,39 @@
+import impaortant packages: scanner
+
+calculator(){
+    main(){
+        Scanner sc = new Scanner(System.in);
+        print ("MENU\n 1.Add\n 2.Subtract\n 3.Multiply\n 4.Divide);
+        print("Enter num1: ");
+        double num1 = sc.nextDouble();
+        print("Enter num2: ");
+        double num2 = sc.nextDouble();
+        print("Enter choice: ");
+        double choice = sc.nextDouble();
+
+        if choice not in (1,4){
+            print("Incorrect Choice");
+        }
+        if choice==1{
+            ans=num1+num2;
+            print(ans);
+        }
+        if choice==2{
+            ans=num1-num2;
+            print(ans);
+        }
+        if choice==3{
+            ans=num1*num2;
+            print(ans);
+        }
+        if choice==1{
+            if(num2==0){
+                print("Undefined");
+            }
+            else{
+                ans=num1/num2;
+                print(ans);
+            }
+        }
+    }
+}

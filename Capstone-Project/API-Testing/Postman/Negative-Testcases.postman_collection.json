@@ -1,0 +1,2471 @@
+{
+	"info": {
+		"_postman_id": "00f37217-bf95-4019-89c3-5fff342d127f",
+		"name": "Negative-Testcases",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38886124"
+	},
+	"item": [
+		{
+			"name": "Account-Already-Exists",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 409\", function () {\r",
+							"    pm.response.to.have.status(409);\r",
+							"});\r",
+							"\r",
+							"// Check the success field\r",
+							"pm.test(\"Success is false\", function () {\r",
+							"    pm.expect(jsonData.success).to.be.false;\r",
+							"});\r",
+							"\r",
+							"// Check the message field\r",
+							"pm.test(\"Message is 'An account already exists with the same email address'\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"An account already exists with the same email address\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"demo-abc\",\r\n  \"email\": \"demo-abc@testing123623.com\",\r\n  \"password\": \"demo-abc@123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/users/register",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"users",
+						"register"
+					]
+				},
+				"description": "Returns status code 409 (Conflict)"
+			},
+			"response": []
+		},
+		{
+			"name": "Invalid-Credentials-for-Registeration-1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"// Check the success field\r",
+							"pm.test(\"Success is false\", function () {\r",
+							"    pm.expect(jsonData.success).to.be.false;\r",
+							"});\r",
+							"\r",
+							"// Check the message field\r",
+							"pm.test(\"Message is 'Password must be between 6 and 30 characters'\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"Password must be between 6 and 30 characters\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "// invalid password\r\n{\r\n    \"name\":\"demo-abc\",\r\n    \"email\":\"demo-abc@testing12345.com\",\r\n    \"password\":\"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/users/register",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"users",
+						"register"
+					]
+				},
+				"description": "Invalid credentials entered in registeration returns 404 (Invalid)"
+			},
+			"response": []
+		},
+		{
+			"name": "Invalid-Credentials-for-Registeration-2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"// Check the success field\r",
+							"pm.test(\"Success is false\", function () {\r",
+							"    pm.expect(jsonData.success).to.be.false;\r",
+							"});\r",
+							"\r",
+							"// Check the message field\r",
+							"pm.test(\"Message is 'A valid email address is required'\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"A valid email address is required\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "// invalid email\r\n{\r\n    \"name\":\"demo-abc\",\r\n    \"email\":\"\",\r\n    \"password\":\"demo-abc@123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/users/register",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"users",
+						"register"
+					]
+				},
+				"description": "Invalid credentials entered in registeration returns 404 (Invalid)"
+			},
+			"response": []
+		},
+		{
+			"name": "Invalid-Credentials-for-Registeration-3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"// Check the success field\r",
+							"pm.test(\"Success is false\", function () {\r",
+							"    pm.expect(jsonData.success).to.be.false;\r",
+							"});\r",
+							"\r",
+							"// Check the message field\r",
+							"pm.test(\"Message is 'A valid email address is required'\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"A valid email address is required\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "// //invalid password and email\r\n{\r\n    \"name\":\"demo-abc\",\r\n    \"email\":\"\",\r\n    \"password\":\"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/users/register",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"users",
+						"register"
+					]
+				},
+				"description": "Invalid credentials entered in registeration returns 404 (Invalid)"
+			},
+			"response": []
+		},
+		{
+			"name": "Invalid-Credentials-for-Registeration-4",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"// Check the success field\r",
+							"pm.test(\"Success is false\", function () {\r",
+							"    pm.expect(jsonData.success).to.be.false;\r",
+							"});\r",
+							"\r",
+							"// Check the message field\r",
+							"pm.test(\"Message is 'User name must be between 4 and 30 characters'\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"User name must be between 4 and 30 characters\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "// //invalid name\r\n{\r\n    \"name\":\"\",\r\n    \"email\":\"demo-abc@testing12345.com\",\r\n    \"password\":\"demo-abc@123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/users/register",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"users",
+						"register"
+					]
+				},
+				"description": "Invalid credentials entered in registeration returns 404 (Invalid)"
+			},
+			"response": []
+		},
+		{
+			"name": "Unsuccessful-User-Login-1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 401\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"});\r",
+							"\r",
+							"// Check the success field\r",
+							"pm.test(\"Success is false\", function () {\r",
+							"    pm.expect(jsonData.success).to.be.false;\r",
+							"});\r",
+							"\r",
+							"// Check the message field\r",
+							"pm.test(\"Message is 'Incorrect email address or password'\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"Incorrect email address or password\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "//wrong email entered\r\n{\r\n    \"email\":\"random-value@test.com\",\r\n    \"password\":\"demo-abc@123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/users/login",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"users",
+						"login"
+					]
+				},
+				"description": "When entered incorrect credentials, it returns status code 401 (Unauthorized)"
+			},
+			"response": []
+		},
+		{
+			"name": "Unsuccessful-User-Login-2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 401\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"});\r",
+							"\r",
+							"// Check the success field\r",
+							"pm.test(\"Success is false\", function () {\r",
+							"    pm.expect(jsonData.success).to.be.false;\r",
+							"});\r",
+							"\r",
+							"// Check the message field\r",
+							"pm.test(\"Message is 'Incorrect email address or password'\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"Incorrect email address or password\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "// wrong password entered\r\n{\r\n    \"email\":\"demo-abc@testing123.com\",\r\n    \"password\":\"wrong-password123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/users/login",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"users",
+						"login"
+					]
+				},
+				"description": "When entered incorrect credentials, it returns status code 401 (Unauthorized)"
+			},
+			"response": []
+		},
+		{
+			"name": "Unsuccessful-User-Login-3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 401\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"});\r",
+							"\r",
+							"// Check the success field\r",
+							"pm.test(\"Success is false\", function () {\r",
+							"    pm.expect(jsonData.success).to.be.false;\r",
+							"});\r",
+							"\r",
+							"// Check the message field\r",
+							"pm.test(\"Message is 'Incorrect email address or password'\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"Incorrect email address or password\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "// wrong email, wrong password entered\r\n{\r\n    \"email\":\"random-value@testing123.com\",\r\n    \"password\":\"wrong-password@12\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/users/login",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"users",
+						"login"
+					]
+				},
+				"description": "When entered incorrect credentials, it returns status code 401 (Unauthorized)"
+			},
+			"response": []
+		},
+		{
+			"name": "Unsuccessful-Profile-Details-Retrieval-1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 401\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"});\r",
+							"\r",
+							"// Check the success field\r",
+							"pm.test(\"Success is false\", function () {\r",
+							"    pm.expect(jsonData.success).to.be.false;\r",
+							"});\r",
+							"\r",
+							"// Check the message field\r",
+							"pm.test(\"Message is 'No authentication token specified in x-auth-token header'\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"No authentication token specified in x-auth-token header\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "//x-auth-token not given in header\r\n{\r\n    \"name\": \"demo-abc\",\r\n    \"phone\": \"1234567890\",\r\n    \"company\":\"LightUp\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/users/profile",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"users",
+						"profile"
+					]
+				},
+				"description": "Returns status code 400 (bad request) as name is a compulsory field."
+			},
+			"response": []
+		},
+		{
+			"name": "Unsuccessful-Profile-Details-Retrieval-2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 401\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"});\r",
+							"\r",
+							"// Check the success field\r",
+							"pm.test(\"Success is false\", function () {\r",
+							"    pm.expect(jsonData.success).to.be.false;\r",
+							"});\r",
+							"\r",
+							"// Check the message field\r",
+							"pm.test(\"Message is 'Access token is not valid or has expired, you will need to login'\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"Access token is not valid or has expired, you will need to login\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"value": "3c6316b07571496daaf9180409bf3981605417566acc4306993715f7d118e831",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "//x-auth-token not given correctly\r\n{\r\n    \"name\": \"\",\r\n    \"phone\": \"\",\r\n    \"company\":\"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/users/profile",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"users",
+						"profile"
+					]
+				},
+				"description": "Returns status code 400 (bad request) as name is a compulsory field."
+			},
+			"response": []
+		},
+		{
+			"name": "Unsuccessful-User-Info-Update-1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"// Check the success field\r",
+							"pm.test(\"Success is false\", function () {\r",
+							"    pm.expect(jsonData.success).to.be.false;\r",
+							"});\r",
+							"\r",
+							"// Check the message field\r",
+							"pm.test(\"Message is 'User name must be between 4 and 30 characters'\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"User name must be between 4 and 30 characters\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"value": "{{x-auth-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "// name field is compulsory and empty\r\n{\r\n    \"name\": \"\",\r\n    \"phone\": \"1234567890\",\r\n    \"company\":\"NiceSpace\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/users/profile",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"users",
+						"profile"
+					]
+				},
+				"description": "Returns status code 400 (Bad Request)."
+			},
+			"response": []
+		},
+		{
+			"name": "Unsuccessful-User-Info-Update-2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 401\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"});\r",
+							"\r",
+							"// Check the success field\r",
+							"pm.test(\"Success is false\", function () {\r",
+							"    pm.expect(jsonData.success).to.be.false;\r",
+							"});\r",
+							"\r",
+							"// Check the message field\r",
+							"pm.test(\"Message is 'No authentication token specified in x-auth-token header'\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"No authentication token specified in x-auth-token header\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "//x-auth-token not given in header\r\n{\r\n    \"name\": \"demo-abc\",\r\n    \"phone\": \"\",\r\n    \"company\":\"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/users/profile",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"users",
+						"profile"
+					]
+				},
+				"description": "Returns status code 401 (Unauthorized)"
+			},
+			"response": []
+		},
+		{
+			"name": "Unsuccessful-Forgot-Password-1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"// Check the success field\r",
+							"pm.test(\"Success is false\", function () {\r",
+							"    pm.expect(jsonData.success).to.be.false;\r",
+							"});\r",
+							"\r",
+							"// Check the message field\r",
+							"pm.test(\"Message is 'A valid email address is required'\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"A valid email address is required\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "// invalid email\r\n{\r\n    \"email\":\"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/users/forgot-password",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"users",
+						"forgot-password"
+					]
+				},
+				"description": "Returns status code 400 (Bad Request)"
+			},
+			"response": []
+		},
+		{
+			"name": "Unsuccessful-Forgot-Password-2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 401\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"});\r",
+							"\r",
+							"// Check the success field\r",
+							"pm.test(\"Success is false\", function () {\r",
+							"    pm.expect(jsonData.success).to.be.false;\r",
+							"});\r",
+							"\r",
+							"// Check the message field\r",
+							"pm.test(\"Message is 'No account found with the given email address'\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"No account found with the given email address\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "// non-existing email\r\n{\r\n    \"email\":\"lonewolf@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/users/forgot-password",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"users",
+						"forgot-password"
+					]
+				},
+				"description": "Returns status code 401 (Unauthorized)"
+			},
+			"response": []
+		},
+		{
+			"name": "Unsuccessful-Verify-Password-Reset-Token-1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"});\r",
+							"\r",
+							"// Check the success field\r",
+							"pm.test(\"Success is false\", function () {\r",
+							"    pm.expect(jsonData.success).to.be.false;\r",
+							"});\r",
+							"\r",
+							"// Check the message field\r",
+							"pm.test(\"Message is 'The provided password reset token is invalid or has expired'\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"The provided password reset token is invalid or has expired\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "// invalid token value\r\n{\r\n    \"token\":\"invalid-token-value-here\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/users/verify-reset-password-token",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"users",
+						"verify-reset-password-token"
+					]
+				},
+				"description": "Returns status code 400 (Bad Request)"
+			},
+			"response": []
+		},
+		{
+			"name": "Unsuccessful-Verify-Password-Reset-Token-2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 401\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"});\r",
+							"\r",
+							"// Check the success field\r",
+							"pm.test(\"Success is false\", function () {\r",
+							"    pm.expect(jsonData.success).to.be.false;\r",
+							"});\r",
+							"\r",
+							"// Check the message field\r",
+							"pm.test(\"Message is 'The provided password reset token is invalid or has expired'\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"The provided password reset token is invalid or has expired\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "// not giving any token value\r\n{\r\n    \"token\":\"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/users/verify-reset-password-token",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"users",
+						"verify-reset-password-token"
+					]
+				},
+				"description": "Returns status code 401 (Unauthorized)"
+			},
+			"response": []
+		},
+		{
+			"name": "Unsuccessful-Reset-Password-1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"// Check the success field\r",
+							"pm.test(\"Success is false\", function () {\r",
+							"    pm.expect(jsonData.success).to.be.false;\r",
+							"});\r",
+							"\r",
+							"// Check the message field\r",
+							"pm.test(\"Message is 'Token must be between 64 characters'\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"Token must be between 64 characters\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "// invalid token value\r\n{\r\n    \"token\":\"\",\r\n    \"newPassword\":\"Xyz@1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/users/reset-password",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"users",
+						"reset-password"
+					]
+				},
+				"description": "Returns status code 400 (Bad Request)"
+			},
+			"response": []
+		},
+		{
+			"name": "Unsuccessful-Reset-Password-2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"// Check the success field\r",
+							"pm.test(\"Success is false\", function () {\r",
+							"    pm.expect(jsonData.success).to.be.false;\r",
+							"});\r",
+							"\r",
+							"// Check the message field\r",
+							"pm.test(\"Message is 'New password must be between 6 and 30 characters'\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"New password must be between 6 and 30 characters\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "// invalid newPassword value\r\n{\r\n    \"token\":\"valid-token-value-here\",\r\n    \"newPassword\":\"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/users/reset-password",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"users",
+						"reset-password"
+					]
+				},
+				"description": "Returns status code 400 (Bad Request)"
+			},
+			"response": []
+		},
+		{
+			"name": "Unsuccessful-Reset-Password-3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"// Check the success field\r",
+							"pm.test(\"Success is false\", function () {\r",
+							"    pm.expect(jsonData.success).to.be.false;\r",
+							"});\r",
+							"\r",
+							"// Check the message field for newPassword field\r",
+							"pm.test(\"Message is 'New password must be between 6 and 30 characters'\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"New password must be between 6 and 30 characters\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "// invalid token and newPassword value\r\n{\r\n    \"token\":\"\",\r\n    \"newPassword\":\"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/users/reset-password",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"users",
+						"reset-password"
+					]
+				},
+				"description": "Returns status code 400 (Bad Request)"
+			},
+			"response": []
+		},
+		{
+			"name": "Unsuccessful-Change-Password-1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"// Check the success field\r",
+							"pm.test(\"Success is false\", function () {\r",
+							"    pm.expect(jsonData.success).to.be.false;\r",
+							"});\r",
+							"\r",
+							"// Check the message field\r",
+							"pm.test(\"Message is 'Current password must be between 6 and 30 characters'\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"Current password must be between 6 and 30 characters\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"value": "{{x-auth-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "//invalid currentPassword\r\n{\r\n    \"currentPassword\":\"\",\r\n    \"newPassword\":\"Xyz@1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/users/change-password",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"users",
+						"change-password"
+					]
+				},
+				"description": "Returns status code 400 (Bad Request)"
+			},
+			"response": []
+		},
+		{
+			"name": "Unsuccessful-Change-Password-2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"// Check the success field\r",
+							"pm.test(\"Success is false\", function () {\r",
+							"    pm.expect(jsonData.success).to.be.false;\r",
+							"});\r",
+							"\r",
+							"// Check the message field\r",
+							"pm.test(\"Message is 'New password must be between 6 and 30 characters'\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"New password must be between 6 and 30 characters\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"value": "{{x-auth-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "// invalid newPassword\r\n{\r\n    \"currentPassword\":\"demo-abc@123\",\r\n    \"newPassword\":\"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/users/change-password",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"users",
+						"change-password"
+					]
+				},
+				"description": "Returns status code 400 (Bad Request)"
+			},
+			"response": []
+		},
+		{
+			"name": "Unsuccessful-Change-Password-3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 401\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"});\r",
+							"\r",
+							"// Check the success field\r",
+							"pm.test(\"Success is false\", function () {\r",
+							"    pm.expect(jsonData.success).to.be.false;\r",
+							"});\r",
+							"\r",
+							"// Check the message field\r",
+							"pm.test(\"Message is 'No authentication token specified in x-auth-token header'\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"No authentication token specified in x-auth-token header\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "// x-auth-token not enetered in header\r\n{\r\n    \"currentPassword\":\"demo-abc@123\",\r\n    \"newPassword\":\"Xyz@1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/users/change-password",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"users",
+						"change-password"
+					]
+				},
+				"description": "Returns status code 401 (Unauthorized)"
+			},
+			"response": []
+		},
+		{
+			"name": "Unsuccessful-User-Logout",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 401\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"});\r",
+							"\r",
+							"// Check the success field\r",
+							"pm.test(\"Success is false\", function () {\r",
+							"    pm.expect(jsonData.success).to.be.false;\r",
+							"});\r",
+							"\r",
+							"// Check the message field\r",
+							"pm.test(\"Message is 'No authentication token specified in x-auth-token header'\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"No authentication token specified in x-auth-token header\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "// x-auth-token not included in header",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/users/logout",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"users",
+						"logout"
+					]
+				},
+				"description": "Returns status code 401 (Unauthorized)"
+			},
+			"response": []
+		},
+		{
+			"name": "Unsuccessful-Delete-Account",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 401\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"});\r",
+							"\r",
+							"// Check the success field\r",
+							"pm.test(\"Success is false\", function () {\r",
+							"    pm.expect(jsonData.success).to.be.false;\r",
+							"});\r",
+							"\r",
+							"// Check the message field\r",
+							"pm.test(\"Message is 'No authentication token specified in x-auth-token header'\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"No authentication token specified in x-auth-token header\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "// x-auth-token not given in header",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/users/delete-account",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"users",
+						"delete-account"
+					]
+				},
+				"description": "Returns status code 401 (Unauthorized)"
+			},
+			"response": []
+		},
+		{
+			"name": "Unsuccessfully-Create-Notes-1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"// Check the success field\r",
+							"pm.test(\"Success is false\", function () {\r",
+							"    pm.expect(jsonData.success).to.be.false;\r",
+							"});\r",
+							"\r",
+							"// Check the message field\r",
+							"pm.test(\"Message is 'Title must be between 4 and 100 characters'\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"Title must be between 4 and 100 characters\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"value": "{{x-auth-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "// title is compulsory field and not given\r\n{\r\n    \"title\":\"\",\r\n    \"description\":\"API-Testing-Notes for Postman\",\r\n    \"category\":\"Work\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/notes",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"notes"
+					]
+				},
+				"description": "Returns status code 400 (Bad Request)"
+			},
+			"response": []
+		},
+		{
+			"name": "Unsuccessfully-Create-Notes-2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"// Check the success field\r",
+							"pm.test(\"Success is false\", function () {\r",
+							"    pm.expect(jsonData.success).to.be.false;\r",
+							"});\r",
+							"\r",
+							"// Check the message field\r",
+							"pm.test(\"Message is 'Description must be between 4 and 1000 characters'\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"Description must be between 4 and 1000 characters\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"value": "{{x-auth-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "// description is compulsory field and not given\r\n{\r\n    \"title\":\"ABCD\",\r\n    \"description\":\"\",\r\n    \"category\":\"Work\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/notes",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"notes"
+					]
+				},
+				"description": "Returns status code 400 (Bad Request)"
+			},
+			"response": []
+		},
+		{
+			"name": "Unsuccessfully-Create-Notes-3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"// Check the success field\r",
+							"pm.test(\"Success is false\", function () {\r",
+							"    pm.expect(jsonData.success).to.be.false;\r",
+							"});\r",
+							"\r",
+							"// Check the message field\r",
+							"pm.test(\"Message is 'Category must be one of the categories: Home, Work, Personal'\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"Category must be one of the categories: Home, Work, Personal\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"value": "{{x-auth-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "// category is compulsory field and not given\r\n{\r\n    \"title\":\"ABCD\",\r\n    \"description\":\"test-only\",\r\n    \"category\":\"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/notes",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"notes"
+					]
+				},
+				"description": "Returns status code 400 (Bad Request)"
+			},
+			"response": []
+		},
+		{
+			"name": "Unsuccessfully-Create-Notes-4",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 401\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"});\r",
+							"\r",
+							"// Check the success field\r",
+							"pm.test(\"Success is false\", function () {\r",
+							"    pm.expect(jsonData.success).to.be.false;\r",
+							"});\r",
+							"\r",
+							"// Check the message field\r",
+							"pm.test(\"Message is 'No authentication token specified in x-auth-token header'\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"No authentication token specified in x-auth-token header\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "// x-auth-token not given in header\r\n{\r\n    \"title\":\"API-Testing\",\r\n    \"description\":\"API-Testing-Notes for Postman\",\r\n    \"category\":\"Work\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/notes",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"notes"
+					]
+				},
+				"description": "Returns status code 401 (Unauthorized)"
+			},
+			"response": []
+		},
+		{
+			"name": "Unsuccessfully-Get-All-Notes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 401\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"});\r",
+							"\r",
+							"// Check the success field\r",
+							"pm.test(\"Success is false\", function () {\r",
+							"    pm.expect(jsonData.success).to.be.false;\r",
+							"});\r",
+							"\r",
+							"// Check the message field\r",
+							"pm.test(\"Message is 'No authentication token specified in x-auth-token header'\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"No authentication token specified in x-auth-token header\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "// x-auth-token not given in header",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/notes",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"notes"
+					]
+				},
+				"description": "Returns status code 401 (Unauthorized)"
+			},
+			"response": []
+		},
+		{
+			"name": "Unsuccessfully-Get-Notes-By-Id-1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"// Check the status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Check the message field\r",
+							"pm.test(\"Message is 'No notes found'\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"No notes found\");\r",
+							"});\r",
+							"\r",
+							"// Check the data field is an empty array\r",
+							"pm.test(\"Data is an empty array\", function () {\r",
+							"    pm.expect(jsonData.data).to.be.an('array').that.is.empty;\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"value": "{{x-auth-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "// incorrect id\r\n{\r\n    \"id\":\"wrong-id-here\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/notes",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"notes"
+					]
+				},
+				"description": "Returns status code 400 (Bad Request)"
+			},
+			"response": []
+		},
+		{
+			"name": "Unsuccessfully-Get-Notes-By-Id-2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"// Check the status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Check the message field\r",
+							"pm.test(\"Message is 'No notes found'\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"No notes found\");\r",
+							"});\r",
+							"\r",
+							"// Check the data field is an empty array\r",
+							"pm.test(\"Data is an empty array\", function () {\r",
+							"    pm.expect(jsonData.data).to.be.an('array').that.is.empty;\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"value": "{{x-auth-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "// incorrect id\r\n{\r\n    \"id\":\"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/notes",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"notes"
+					]
+				},
+				"description": "Returns status code 400 (Bad Request)"
+			},
+			"response": []
+		},
+		{
+			"name": "Unsuccessfully-Get-Notes-By-Id-3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"// Check the status code\r",
+							"pm.test(\"Status code is 401\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"});\r",
+							"\r",
+							"// Check the message field\r",
+							"pm.test(\"No authentication token specified in x-auth-token header'\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"No authentication token specified in x-auth-token header\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "// x-auth-token not given header\r\n{\r\n    \"id\":\"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/notes",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"notes"
+					]
+				},
+				"description": "Returns status code 400 (Bad Request)"
+			},
+			"response": []
+		},
+		{
+			"name": "Unsuccessful-Update-Completed-Status-of-Notes-1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"// Check the success field\r",
+							"pm.test(\"Success is false\", function () {\r",
+							"    pm.expect(jsonData.success).to.be.false;\r",
+							"});\r",
+							"\r",
+							"// Check the status code\r",
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"// Check the message field\r",
+							"pm.test(\"Message is 'Note ID must be a valid ID'\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"Note ID must be a valid ID\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"value": "{{x-auth-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "// incorrect id entered\r\n{\r\n    \"id\": \"wrong-id-here\",\r\n    \"completed\": false //earlier was true; now setting to false again\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/notes/{wrong-id-here}",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"notes",
+						"{wrong-id-here}"
+					]
+				},
+				"description": "Returns status code 400 (Bad Request)"
+			},
+			"response": []
+		},
+		{
+			"name": "Unsuccessful-Update-Completed-Status-of-Notes-2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"// Check the success field\r",
+							"pm.test(\"Success is false\", function () {\r",
+							"    pm.expect(jsonData.success).to.be.false;\r",
+							"});\r",
+							"\r",
+							"// Check the status code\r",
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"// Check the message field\r",
+							"pm.test(\"Message is 'Note ID must be a valid ID'\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"Note ID must be a valid ID\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"value": "{{x-auth-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "// invalid id\r\n{\r\n    \"id\": \"\",\r\n    \"completed\": \"\" //earlier was true; now setting to false again\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/notes/{}",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"notes",
+						"{}"
+					]
+				},
+				"description": "Returns status code 400 (Bad Request)"
+			},
+			"response": []
+		},
+		{
+			"name": "Unsuccessful-Update-Completed-Status-of-Notes-3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"// Check the success field\r",
+							"pm.test(\"Success is false\", function () {\r",
+							"    pm.expect(jsonData.success).to.be.false;\r",
+							"});\r",
+							"\r",
+							"// Check the status code\r",
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"// Check the message field\r",
+							"pm.test(\"Message is 'Title must be between 4 and 100 characters'\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"Title must be between 4 and 100 characters\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"value": "{{x-auth-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "// invalid completed status\r\n{\r\n    \"id\":\"6707b4b6e1227f0151f9f60a\",\r\n    \"completed\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/notes/67094408e1227f0151f9fde6",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"notes",
+						"67094408e1227f0151f9fde6"
+					]
+				},
+				"description": "Returns status code 400 (Bad Request)"
+			},
+			"response": []
+		},
+		{
+			"name": "Unsuccessful-Update-Completed-Status-of-Notes-4",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"// Check the success field\r",
+							"pm.test(\"Success is false\", function () {\r",
+							"    pm.expect(jsonData.success).to.be.false;\r",
+							"});\r",
+							"\r",
+							"// Check the status code\r",
+							"pm.test(\"Status code is 401\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"});\r",
+							"\r",
+							"// Check the message field\r",
+							"pm.test(\"Message is 'No authentication token specified in x-auth-token header'\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"No authentication token specified in x-auth-token header\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "// x-auth-token not given in header\r\n{\r\n    \"id\":\"67094404e1227f0151f9fde2\",\r\n    \"completed\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/notes/67094404e1227f0151f9fde2",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"notes",
+						"67094404e1227f0151f9fde2"
+					]
+				},
+				"description": "Return status code 401 (Unauthorized)"
+			},
+			"response": []
+		},
+		{
+			"name": "Unsuccessful-Delete-Notes-1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"// Check the success field\r",
+							"pm.test(\"Success is false\", function () {\r",
+							"    pm.expect(jsonData.success).to.be.false;\r",
+							"});\r",
+							"\r",
+							"// Check the status code\r",
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"// Check the message field\r",
+							"pm.test(\"Message is 'Note ID must be a valid ID'\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"Note ID must be a valid ID\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"value": "{{x-auth-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "// invalid id\r\n{\r\n    \"id\":\"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/notes/{}",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"notes",
+						"{}"
+					]
+				},
+				"description": "Returns status code 400 (Bad Request)"
+			},
+			"response": []
+		},
+		{
+			"name": "Unsuccessful-Delete-Notes-2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"// Check the success field\r",
+							"pm.test(\"Success is false\", function () {\r",
+							"    pm.expect(jsonData.success).to.be.false;\r",
+							"});\r",
+							"\r",
+							"// Check the status code\r",
+							"pm.test(\"Status code is 401\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"});\r",
+							"\r",
+							"// Check the message field\r",
+							"pm.test(\"Message is 'No authentication token specified in x-auth-token header'\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"No authentication token specified in x-auth-token header\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "// x-auth-token not given in header\r\n{\r\n    \"id\":\"6709440be1227f0151f9fdeb\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/notes/6709440be1227f0151f9fdeb",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"notes",
+						"6709440be1227f0151f9fdeb"
+					]
+				},
+				"description": "Returns status code 400 (Bad Request)"
+			},
+			"response": []
+		}
+	]
+}

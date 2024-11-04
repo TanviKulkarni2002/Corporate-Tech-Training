@@ -1,0 +1,180 @@
+#Create database
+create database stack_route;
+ show databases;
+
+#Creating Tables
+ create table Note (
+    -> note_id int,
+    -> note_title varchar(50),
+    -> note_content varchar(50),
+    -> note_status varchar(50),
+    -> note_creation_date date);
+
+ create table Category (
+    -> category_id int,
+    -> category_name varchar(50),
+    -> category_descr varchar(50),
+    -> category_creation_date date,
+    -> category_creator varchar(50) );
+
+create table Reminder (
+    -> reminder_id int,
+    -> reminder_name varchar(50),
+    -> reminder_desc varchar(50),
+    -> reminder_type varchar(50),
+    -> reminder_creation_date date,
+    -> reminder_creator varchar(50) );
+
+create table User (
+    -> user_id int,
+    -> user_name varchar(50),
+    -> user_added_date varchar(50),
+    -> user_password varchar(50),
+    -> user_mobile varchar(50)
+    -> );
+
+#Setting Primary Keys
+describe category;
+alter table category
+    -> add primary key (category_id);
+
+ describe note;
+ alter table note
+    -> add primary key (note_id);
+
+describe reminder;
+alter table reminder
+    -> add primary key (reminder_id);
+
+describe user;
+ alter table user
+    -> add primary key (user_id);
+
+#Correcting datatype of the column (from varchar(50) to date)
+alter table User
+    -> modify column user_added_date date;
+
+#Insert a row into the table User
+insert into User
+    -> values (112233,'Alex','2024-12-09','Maya1214','123456789');
+
+insert into User
+    -> values (112245,'Bene','2024-11-12','Master2121','1234563450');
+
+Query 1:
+ select * from User
+    -> where user_id=112233 and user_password='Maya1214';
+
+# Insert rows into table Note
+insert into note (note_id,note_title,note_content,note_status,note_creation_date)
+    -> values
+    -> (1,'A','abc123','InUse','2019-01-31');
+ insert into note (note_id,note_title,note_content,note_status,note_creation_date)
+    -> values
+    -> (2,'A','abc123','Decomissioned','2019-01-31'),
+    -> (3,'B','abc123','InUse','2018-01-31'),
+    -> (4,'C','abc123','InUse','2017-01-31');
+
+Query 2:
+select * from Note where note_creation_date='2019-01-31';
+
+insert into category
+    -> values
+    -> (1,'A','abc123','2019-01-22','B'),
+    -> (2,'C','abc123','2019-02-23','B'),
+    -> (3,'A','abc123','2018-02-23','D'),
+    -> (4,'E','abc123','2020-02-23','A');
+
+Query 3:
+ select * from category where category_creation_date>'2019-01-22';
+
+#Add a row in table user
+ insert into user
+    -> values (112244,'Gem','2023-07-09','DragonKing#44','1123448790');
+
+#Create table User_Note which maps users and the notes they have.
+create table User_Note(
+    -> user_id int,
+    -> has_note_id int );
+
+#Add foreign key
+alter table user_note
+    -> add foreign key(user_id)
+    -> references user(user_id);
+
+alter table user_note
+    -> add foreign key(has_note_id)
+    -> references note(note_id);
+
+#Insert rows in tbale User_Notes
+insert into user_note
+    -> values
+    -> (112233,1),
+    -> (112244,3),
+    -> (112245,4);
+
+Query 5:
+select user.user_id,user_name,has_note_id from User
+    -> inner join User_Note
+    -> on user.user_id=user_note.user_id
+    -> where user_note.user_id=112244;
+
+#Create table Category_Notes
+create table category_note (
+    -> category_id int,
+    -> note_id int);
+
+#Add foreign keys
+alter table category_note
+    -> add foreign key(note_id)
+    -> references note(note_id);
+
+alter table category_note
+    -> add foreign key(category_id)
+    -> references category(category_id);
+
+#Insert calues in category_note
+insert into category_note
+    -> values
+    -> (1,2),
+    -> (2,3);
+
+Query 6:
+select * from category_note
+    -> where category_id=1;
+
+#Insert rows into reminder table
+insert into reminder (reminder_id, reminder_name, reminder_desc, reminder_type, reminder_creation_date, reminder_creator)
+    -> values
+    -> (1,'A','abc123','Urgent','2024-09-12','Z'),
+    -> (2,'B','abc','Delay','2023-03-21','Y'),
+    -> (3,'C','1245a','Early','2024-12-17','X');
+
+Query 7:
+select note.note_id, reminder.*, note.*
+    -> from reminder
+    -> natural join note
+    -> where note.note_id=2;
+
+Query 8:
+update note
+    -> set note.note_status='Completed'
+    -> where note_id=3;
+
+#Insert one more row in reminder table
+insert into reminder
+    -> values
+    -> (4,'D','abab','Personal_Reminder','2022-06-07','W');
+
+Query 9:
+select note.note_id, reminder.*, note.*
+from reminder
+natural join note
+where note.note_id=1 
+  and reminder.reminder_id in (
+      select reminder_id 
+      from reminder_type 
+      where type = 'Personal_Reminder');
+
+Query 10:
+Two different tables. No association given.

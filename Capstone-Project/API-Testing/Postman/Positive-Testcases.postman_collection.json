@@ -1,0 +1,1273 @@
+{
+	"info": {
+		"_postman_id": "bead4a30-067e-4e1b-913e-d3ba18cb9325",
+		"name": "Positive-Testcases",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38886124"
+	},
+	"item": [
+		{
+			"name": "Health-Check",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Check the success field\r",
+							"pm.test(\"Success is true\", function () {\r",
+							"    pm.expect(jsonData.success).to.be.true;\r",
+							"});\r",
+							"\r",
+							"// Check the message field\r",
+							"pm.test(\"Message is 'Notes API is Running'\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"Notes API is Running\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/health-check",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"health-check"
+					]
+				},
+				"description": "Returns status code 200 (OK). API is working correctly."
+			},
+			"response": []
+		},
+		{
+			"name": "Successful-Registeration",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"// Check the status code\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"// Check the success field\r",
+							"pm.test(\"Success is true\", function () {\r",
+							"    pm.expect(jsonData.success).to.be.true;\r",
+							"});\r",
+							"\r",
+							"// Check the message field\r",
+							"pm.test(\"Message is 'User account created successfully'\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"User account created successfully\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"demo-abc\",\r\n  \"email\": \"demo-abc@testing101.com\",\r\n  \"password\": \"demo-abc@123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/users/register",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"users",
+						"register"
+					]
+				},
+				"description": "Returns status 201 (Successful Creation) for valid registeration. Else 400 (Bad Request)"
+			},
+			"response": []
+		},
+		{
+			"name": "Successful-User-Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Check the success field\r",
+							"pm.test(\"Success is true\", function () {\r",
+							"    pm.expect(jsonData.success).to.be.true;\r",
+							"});\r",
+							"\r",
+							"// Check the message field\r",
+							"pm.test(\"Login successful'\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"Login successful\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"demo-abc@testing101.com\",\r\n    \"password\":\"demo-abc@123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/users/login",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"users",
+						"login"
+					]
+				},
+				"description": "Returns status code 200 (OK) for successfully logging into the account."
+			},
+			"response": []
+		},
+		{
+			"name": "Successful-Profile-Details-Retrieval",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Check the success field\r",
+							"pm.test(\"Success is true\", function () {\r",
+							"    pm.expect(jsonData.success).to.be.true;\r",
+							"});\r",
+							"\r",
+							"// Check the message field\r",
+							"pm.test(\"Profile successful'\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"Profile successful\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"value": "{{x-auth-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/users/profile",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"users",
+						"profile"
+					]
+				},
+				"description": "First run the Successful-User-Login request. Get the token and paste it in the header section of this request.\n\nKey: x-auth-name.\n\nReturns status code 200 (OK) for successful retrieval of user profile data."
+			},
+			"response": []
+		},
+		{
+			"name": "Successful-User-Info-Update",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Check the success field\r",
+							"pm.test(\"Success is true\", function () {\r",
+							"    pm.expect(jsonData.success).to.be.true;\r",
+							"});\r",
+							"\r",
+							"// Check the message field\r",
+							"pm.test(\"Profile updated successful'\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"Profile updated successful\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"value": "{{x-auth-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"demo-abc\",\r\n    \"phone\": \"1234567890\",\r\n    \"company\":\"LightUp\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/users/profile",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"users",
+						"profile"
+					]
+				},
+				"description": "User updation successful. Returns status code 200 (OK)."
+			},
+			"response": []
+		},
+		{
+			"name": "Successful-Forgot-Password",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Check the success field\r",
+							"pm.test(\"Success is true\", function () {\r",
+							"    pm.expect(jsonData.success).to.be.true;\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "// valid email\r\n{\r\n    \"email\":\"demo-abc@testing123623.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/users/forgot-password",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"users",
+						"forgot-password"
+					]
+				},
+				"description": "Returns status code 200 (OK)"
+			},
+			"response": []
+		},
+		{
+			"name": "Successful-Verify-Password-Reset-Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"// Check the status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Check the success field\r",
+							"pm.test(\"Success is true\", function () {\r",
+							"    pm.expect(jsonData.success).to.be.true;\r",
+							"});\r",
+							"\r",
+							"// Check the message field\r",
+							"pm.test(\"Message is 'The provided password reset token is valid'\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"The provided password reset token is valid\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "// valid token value\r\n{\r\n    \"token\":\"valid-token-value-here\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/users/verify-reset-password-token",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"users",
+						"verify-reset-password-token"
+					]
+				},
+				"description": "Returns status code 200 (OK)"
+			},
+			"response": []
+		},
+		{
+			"name": "Successful-Change-Password",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"// Check the status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Check the success field\r",
+							"pm.test(\"Success is true\", function () {\r",
+							"    pm.expect(jsonData.success).to.be.true;\r",
+							"});\r",
+							"\r",
+							"// Check the message field\r",
+							"pm.test(\"Message is 'The password was successfully updated'\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"The password was successfully updated\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"value": "{{x-auth-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"currentPassword\":\"demo-abc@123\",\r\n    \"newPassword\":\"MarvelAvengers@123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/users/change-password",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"users",
+						"change-password"
+					]
+				},
+				"description": "Returns status code 200 (OK)"
+			},
+			"response": []
+		},
+		{
+			"name": "Successful-User-Logout",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"// Check the status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Check the success field\r",
+							"pm.test(\"Success is true\", function () {\r",
+							"    pm.expect(jsonData.success).to.be.true;\r",
+							"});\r",
+							"\r",
+							"// Check the message field\r",
+							"pm.test(\"Message is 'User has been successfully logged out'\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"User has been successfully logged out\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"value": "{{x-auth-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/users/logout",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"users",
+						"logout"
+					]
+				},
+				"description": "Returns status code 200 (OK)"
+			},
+			"response": []
+		},
+		{
+			"name": "Successful-Reset-Password",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"// Check the status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Check the success field\r",
+							"pm.test(\"Success is true\", function () {\r",
+							"    pm.expect(jsonData.success).to.be.true;\r",
+							"});\r",
+							"\r",
+							"// Check the message field\r",
+							"pm.test(\"Message is 'The password has been successfully reset'\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"The password has been successfully reset\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "// valid token value\r\n{\r\n    \"token\":\"valid-token-value-here\",\r\n    \"newPassword\":\"Xyz@1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/users/reset-password",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"users",
+						"reset-password"
+					]
+				},
+				"description": "Returns status code 200 (OK)"
+			},
+			"response": []
+		},
+		{
+			"name": "Successful-Delete-Account",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"// Check the status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Check the success field\r",
+							"pm.test(\"Success is true\", function () {\r",
+							"    pm.expect(jsonData.success).to.be.true;\r",
+							"});\r",
+							"\r",
+							"// Check the message field\r",
+							"pm.test(\"Message is 'Account successfully deleted'\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"Account successfully deleted\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"value": "{{x-auth-token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/users/delete-account",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"users",
+						"delete-account"
+					]
+				},
+				"description": "Returns status code 200 (OK)"
+			},
+			"response": []
+		},
+		{
+			"name": "Successfully-Create-Notes-1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Check the success field\r",
+							"pm.test(\"Success is true\", function () {\r",
+							"    pm.expect(jsonData.success).to.be.true;\r",
+							"});\r",
+							"\r",
+							"// Check the message field\r",
+							"pm.test(\"'Note successfully created'\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"Note successfully created\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"value": "{{x-auth-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "// valid creation of note\r\n{\r\n    \"title\":\"API-Testing\",\r\n    \"description\":\"API-Testing-Notes for Postman\",\r\n    \"category\":\"Work\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/notes",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"notes"
+					]
+				},
+				"description": "Returns status code 200 (OK)"
+			},
+			"response": []
+		},
+		{
+			"name": "Successfully-Create-Notes-2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Check the success field\r",
+							"pm.test(\"Success is true\", function () {\r",
+							"    pm.expect(jsonData.success).to.be.true;\r",
+							"});\r",
+							"\r",
+							"// Check the message field\r",
+							"pm.test(\"'Note successfully created'\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"Note successfully created\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"value": "{{x-auth-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\":\"Gordon Ramsay's CookBook\",\r\n    \"description\":\"Cooking Recipes-Veg Food Only\",\r\n    \"category\":\"Personal\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/notes",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"notes"
+					]
+				},
+				"description": "Returns status code 200 (OK)"
+			},
+			"response": []
+		},
+		{
+			"name": "Successfully-Create-Notes-3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Check the success field\r",
+							"pm.test(\"Success is true\", function () {\r",
+							"    pm.expect(jsonData.success).to.be.true;\r",
+							"});\r",
+							"\r",
+							"// Check the message field\r",
+							"pm.test(\"'Note successfully created'\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"Note successfully created\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"value": "{{x-auth-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\":\"Easy JAVA handbook\",\r\n    \"description\":\"JAVA from scratch with code and output explained\",\r\n    \"category\":\"Home\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/notes",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"notes"
+					]
+				},
+				"description": "Returns status code 200 (OK)"
+			},
+			"response": []
+		},
+		{
+			"name": "Successfully-Get-All-Notes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"// Check the success field\r",
+							"pm.test(\"Success is true\", function () {\r",
+							"    pm.expect(jsonData.success).to.be.true;\r",
+							"});\r",
+							"\r",
+							"// Check the status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Check the message field\r",
+							"pm.test(\"Message is 'Notes successfully retrieved'\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"Notes successfully retrieved\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"value": "{{x-auth-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "// retrieving all the notes created",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/notes",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"notes"
+					]
+				},
+				"description": "Returns status code 200 (OK)"
+			},
+			"response": []
+		},
+		{
+			"name": "Successfully-Get-Notes-By-Id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"// Check the success field\r",
+							"pm.test(\"Success is true\", function () {\r",
+							"    pm.expect(jsonData.success).to.be.true;\r",
+							"});\r",
+							"\r",
+							"// Check the status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Check the message field\r",
+							"pm.test(\"Message is 'Notes successfully retrieved'\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"Notes successfully retrieved\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"value": "{{x-auth-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "// retrive book by mentioning id\r\n{\r\n    \"id\":\"6709440be1227f0151f9fdea\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/notes",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"notes"
+					]
+				},
+				"description": "Returns status code 200 (OK)"
+			},
+			"response": []
+		},
+		{
+			"name": "Successful-Update-Notes-By-Id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"// Check the success field\r",
+							"pm.test(\"Success is true\", function () {\r",
+							"    pm.expect(jsonData.success).to.be.true;\r",
+							"});\r",
+							"\r",
+							"// Check the status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Check the message field\r",
+							"pm.test(\"Message is 'Note successfully Updated'\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"Note successfully Updated\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"value": "{{x-auth-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"6709440be1227f0151f9fdea\",\r\n    \"title\": \"Easy JAVA handbook\",\r\n    \"description\": \"JAVA from scratch with code and output explained\",\r\n    \"completed\": true, //earlier was false; now setting to true\r\n    \"category\": \"Home\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/notes/67094408e1227f0151f9fde6",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"notes",
+						"67094408e1227f0151f9fde6"
+					]
+				},
+				"description": "Returns status code 200 (OK)"
+			},
+			"response": []
+		},
+		{
+			"name": "Successful-Update-Completed-Status-of-Notes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"// Check the success field\r",
+							"pm.test(\"Success is true\", function () {\r",
+							"    pm.expect(jsonData.success).to.be.true;\r",
+							"});\r",
+							"\r",
+							"// Check the status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Check the message field\r",
+							"pm.test(\"Message is 'Note successfully Updated'\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"Note successfully Updated\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"value": "{{x-auth-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "//valid completed status\r\n{\r\n    \"id\": \"6709440be1227f0151f9fdea\",\r\n    \"completed\": true //earlier was false, now set to true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/notes/67094404e1227f0151f9fde2",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"notes",
+						"67094404e1227f0151f9fde2"
+					]
+				},
+				"description": "Returns status code 200 (OK)"
+			},
+			"response": []
+		},
+		{
+			"name": "Successful-Delete-Notes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"// Check the success field\r",
+							"pm.test(\"Success is true\", function () {\r",
+							"    pm.expect(jsonData.success).to.be.true;\r",
+							"});\r",
+							"\r",
+							"// Check the status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Check the message field\r",
+							"pm.test(\"Message is 'Note successfully deleted'\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"Note successfully deleted\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"value": "{{x-auth-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "// valid id entered"
+				},
+				"url": {
+					"raw": "https://practice.expandtesting.com/notes/api/notes/6709440be1227f0151f9fdea",
+					"protocol": "https",
+					"host": [
+						"practice",
+						"expandtesting",
+						"com"
+					],
+					"path": [
+						"notes",
+						"api",
+						"notes",
+						"6709440be1227f0151f9fdea"
+					]
+				},
+				"description": "Returns status code 200 (OK)"
+			},
+			"response": []
+		}
+	]
+}

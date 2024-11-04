@@ -1,0 +1,27 @@
+Import important packages: scanner
+rectanglePerimeter(){
+    main(){
+        new rectanglePerimeter.getValues(); //function call
+    }
+    //function to get input values
+    getValues(){
+        Scanner sc = new Scanner(System.in);
+        print ("Enter length: ");
+        double length =  sc.nextDouble();
+        print ("Enter breadth: ");
+        double breadth =  sc.nextDouble();
+    
+    if(length<=0 || breadth<=0){ //check for failure conditions
+            print("Incorrect Values");
+        }
+        else{
+        perimeterCalculator(length, breadth); //function call
+        }
+    }
+
+    //calculate perimeter of rectangle: 2(l+b)
+    perimeterCalculator(length, breadth) {
+        print("Perimeter of rectangle: "+2*(length+breadth)); //display perimeter
+        return 0;
+    }
+}
