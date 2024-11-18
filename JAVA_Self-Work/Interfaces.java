@@ -13,9 +13,14 @@ public class Interfaces {
         Cycle heroCycle = new Cycle();
         heroCycle.start();
         heroCycle.stop();
+
+        FourWheeler raceCar = new FourWheeler();
+        raceCar.start();
+        raceCar.typeDeclare();
+        raceCar.stop();
     }
 }
-
+        
 interface Vehicle{
     void start();
 
@@ -24,17 +29,37 @@ interface Vehicle{
         System.out.println("Stop operation completed.");
     }
 }
-
+    
 class Car implements Vehicle{
     @Override
     public void start() {
         System.out.println("Car is starting. Engine running.");
     }
 }
-
+    
 class Cycle implements Vehicle{
     @Override
     public void start() {
         System.out.println("Cycle peddles are ready. Begin when you're ready.");
+    }
+
+}
+    
+//Multiple Inheritance in JAVA done indirectly as direct support not available.
+class FourWheeler extends RaceCar implements Vehicle{
+    @Override
+    public void start(){
+        System.out.println("Four wheeler race car is starting.");
+    }
+
+    @Override
+    public void typeDeclare() {
+        super.typeDeclare();
+    }
+}
+    
+class RaceCar{
+    public void typeDeclare(){
+        System.out.println("I am a race car.");
     }
 }
