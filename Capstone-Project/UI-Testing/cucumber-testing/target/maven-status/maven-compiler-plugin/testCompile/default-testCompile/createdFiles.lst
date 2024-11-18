@@ -1,5 +1,3 @@
-com\ncs\StepDefinitions\FilterPrice.class
 com\ncs\Runner\TestRunner.class
 com\ncs\StepDefinitions\CommonMethod.class
 com\ncs\StepDefinitions\CommonSteps.class
-com\ncs\StepDefinitions\ViewKurti.class

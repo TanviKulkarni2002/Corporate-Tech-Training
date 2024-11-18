@@ -1,4 +1,33 @@
 -------------------------------------------------------------------------------
 Test set: com.ncs.Runner.TestRunner
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 46.96 s -- in com.ncs.Runner.TestRunner
+Tests run: 2, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 54.74 s <<< FAILURE! -- in com.ncs.Runner.TestRunner
+Kurti Module #1.Filter Price Range -- Time elapsed: 40.22 s <<< ERROR!
+io.cucumber.junit.UndefinedStepException: 
+The step 'the user clicks on the Kurti tab in the navigation bar' and 1 other step(s) are undefined.
+You can implement these steps using the snippet(s) below:
+
+@When("the user clicks on the Kurti tab in the navigation bar")
+public void the_user_clicks_on_the_kurti_tab_in_the_navigation_bar() {
+    // Write code here that turns the phrase above into concrete actions
+    throw new io.cucumber.java.PendingException();
+}
+@Then("the user should see a filter option and set price range to view kurtis")
+public void the_user_should_see_a_filter_option_and_set_price_range_to_view_kurtis() {
+    // Write code here that turns the phrase above into concrete actions
+    throw new io.cucumber.java.PendingException();
+}
+
+
+Kurti Module #2.View Kurti -- Time elapsed: 14.08 s <<< ERROR!
+io.cucumber.junit.UndefinedStepException: 
+The step 'the user clicks on the Kurti tab in the navigation bar' is undefined.
+You can implement this step using the snippet(s) below:
+
+@When("the user clicks on the Kurti tab in the navigation bar")
+public void the_user_clicks_on_the_kurti_tab_in_the_navigation_bar() {
+    // Write code here that turns the phrase above into concrete actions
+    throw new io.cucumber.java.PendingException();
+}
+
+
