@@ -1,0 +1,520 @@
+Udemy Link: https://www.udemy.com/course/full-stack-java-developer-java/?couponCode=ST15MT100124B
+
+GIT
+-Two types of Version Control Systems:
+	--Centralized(eg: Sub-version)
+	--Distributed(eg: Git)
+
+Distributed--->
+-Master Repository: all source codes are here.
+-Local Repository: master is cloned to local, developers commit only to local repo, commits to local don't need server. Server connection required only when commit from local to master. Testers pull only changes made to the master repo, not the whole master repo.
+-CI/CD is done by DevOps dude.
+-Automatic checking of code (Conflicts).
+	--Build/Compile, test, check code, if failure/success anywhere: send notifs to project people.
+	--if failure occurs at any stage, next steps are not implemented.
+-Version Control helps to rollback to a previous stable version.
+-Eg: GitHub, Bitbucket
+
+Centralized--->
+	--Every developer clones the entire master repo.
+	--Every developer directly push, commit in master repo (merge conflicts, repetitive cloning of master repo or crashes of master repo).
+	--Developers need to be connected to the master repo 24*7.
+-Don't push dependencies and executable files in repo.	
+
+-GIT Commands: Git official website cheat sheet.
+
+-Never directly clone the master repo, use fork instead, any changes made to forked repo are not reflected in master repo.
+
+JAVA
+-3 step compilation High Level (.java file) to Intermediate/Byte Code (.class file) done by Compiler; to Machine Code (.exe file) done by JVM (Interpreter).
+
+-JAVA has 3 main components: 
+	--Class Loader System: load packages, 3rd party resources (eg: APIs) etc., actually give values to static variables.
+	--Run Time Data Area: objects are created here, allocate memory spaces to the running program, threads are available here for running programs. {Stack Area and Heap Area very important for understanding how JAVA works.}
+	--Execution Engine: Byte code to machine code conversion, garbage collection, profiling, etc.
+
+-Instance is associated with a class, 'instance variable' is like a global variable within the class.
+-By default, only 1 thread will execute a JAVA code, unless specified otherwise, execution happens line-by-line. Each thread has its own stack.
+-We create an 'activation record' of each method (in the stack) that was used in execution. We deallocate the memory of the activation record of a method if it has finished the execution, in LIFO order. 
+-If you reach the end of main function, and there are any objects without any reference, in the heap area, they will be sent into 'garbage collection.'
+-PC Register (Program Counter) holds the line no. in the program, which is being executed. Every thread has its own PC Register.
+-Profiler keeps information of a snippet of code which has already been interpreted, so as to avoid re-interpreting it again and again.
+
+Algorithm/ Flowchart/ Pseudocode
+-A pseudocode is a mixture of natural language and some programming syntax (not specific to any language).
+-An algorithm is written in natural language and is the step-by-step procedure of logic to solve the problem.
+-A flowchart is the pictorial description of an algorithm.
+
+Eg1: Algorithm for finding remainder when dividing num1 by num2:
+1) read num1, num2
+2) check if num2==0:
+	print "Undefined", go to (5)
+   else go to (3)
+3) remainder = num1%num2
+4) print remainder
+5) end
+
+Eg2: Pseudocode for Bubble sort.
+1) start
+2) read input array
+3) for i in range (0,length(array)-1):
+	for j in range (i+1,length(array)-2):
+		if array[i]>array[j]:
+			temp=array[i]
+			array[i]=array[j]
+			array[j]=temp
+		else:
+			continue
+4)print array
+5)end
+
+JDK, JRE and JVM
+-JDK: JAVA Development Kit: contains JRE and JVM
+-JRE: JAVA Runtime Environment: It is required to run JAVA codes, contains libraries etc, environment for development of code.
+-JVM: JAVA Virtual Machine: Actual execution of JAVA code, irrespective of device OS.
+
+-'Maven' has the jar files you would need to use third party software, etc (eg: MySQL). You need the jar files to be in the system environment in your JAVA project. You can also download it from the website or use the terminal to download them.
+
+-Primitive datatypes are those for which object is not created for use (byte, short, int, long, float, double, boolean, char).
+-Non-primitive datatypes are those for which object must be created for use (string, array, list etc, infinite).
+
+-Wrapper Classes: Required to wrap primitive datatypes to objects, because JAVA makes use of objects only. (Byte, Short, Integer, Long, Character, Float, Double, Boolean) In JAVA, every input is read as a s
+tring. We need to convert them to other datatypes to use them the way we want. That's where we use wrapper classes. This conversion is done implicitly sometimes by the use of specialized class (eg: java.lang.Scanner class).
+-Auto-boxing (primitive datatypes wrapped into Objects) and Unboxing(Objects wrapped into primitive datatypes) are done by compiler implicitly. They are extensively used with collections. They are also used to convert objects from one datatype to another.
+
+Object Oriented Programming in JAVA
+1. Inheritance
+-Inherited Method: Inheriting a method and using it as it is.
+-Overridden Method: Modifying the inherited method, done by child class. (Method Overriding).
+-Specialized Method: Those methods that are there in child class but not in parent class.
+-Types of Inheritance: Single, Multi-level, Multiple (not allowed in classes, allowed in interfaces), Hierarchical, Hybrid.
+-Upcasting (happens implicitly in JAVA) and Down casting (explicitly only).
+
+2. Encapsulation
+-Combining/ Binding the fields and methods of a class together, also helps in hiding the data, declaring members private etc. for giving controlled access.
+-Make getter() and setter() methods to give controlled access of seeing and updation.
+-Shadowing problem in setter() method: occurs when we are trying to assign the value of local variable to instance variable and local variable and instance variable have the same name; it will take the instance variable's initial value, thus, assignment of new value will not happen. Use 'this' keyword before the instance variable to assign the value of the local variable.
+-'DataEncapsualtion()' built-in method. 
+
+3. Abstraction
+-Abstract class must include abstract methods only. Declaration with 'abstract' keyword.
+
+4. Polymorphism
+-An object can have multiple behaviours, but the object does not change at all. This is known as Polymorphism.
+-Two types: a) Static (compile-time), b)Dynamic (run-time).
+
+Constructor
+-It is like a specialized setter() method.
+-Every class will always have at least 1 constructor: implicit declaration from the compiler.
+-If we define a constructor, compiler will not add a default constructor.
+-Order of execution of JAVA: Static block (within the class)>>Main method>>static blocks (outside the class)>>instance blocks>>constructors(parameterized)>>default(if any) execution>>Main method termination. {Block means "methods and variables"}
+-Local Chaining: calling a constructor from within another constructor in a chain-like manner in the same class, using 'this' keyword. Call should be the first statement within the constructor you want to call it in. There cannot be a loop in the chain call, at least one of those constructors will not have any calls.
+-By default the first line (without explicit code) is 'super-call', i.e., the parent class constructors.
+-'super' keyword is used to chain a user-defined constructor from the parent class in the child class. It should also be the first line in the child class's method/constructor. By default it will call the 0-pramaterized constructor.
+-'super' and 'this' cannot be used together. whichever is written first will be executed and the other will be ignored.
+-A constructor can be overloaded in JAVA.
+
+-All classes in JAVA, by default, have 'Object' class as the parent class, unless specified otherwise.
+-JRE consists of JVM (different JVM for different OS) and JAVA API (platform-neutral).
+-JAVA Native Methods are those that are written in other languages (mostly C/C++) and these methods need to be executed outside JRE.
+
+-Class is a blue-print for a set of objects. In order to use classes, you need to create an instance of the class, which is called an object. Objects have 3 qualities:
+	--Attributes/Properties (multiple objects may have this)
+	--Behaviour (multiple objects may share this)
+	--Unique identity (cannot be common to any other object)
+
+Exception Handling
+-Exceptions: They are abnormalities that occur at runtime and terminate the program. We need to handle them so that the rest of the code executes normally. 
+-The top most class in Exception class hierarchy is "Throwable" which can handle ntoh errors and exceptions. There are two categories of exception: 
+	--Checked: done by compiler, implicitly at compile time; it needs to be handled or declared to be thrown by programmer explicitly; eg: ClassNotFound, FileNotFound, IOException, SQLException. They extend 'Exception' class.
+	--Unchecked: need not be explicitly handled by programmer, they are a rare occurrence, usually occur at runtime; eg: NullPointerException, ArithmeticException, ArrayIndexOutOfBoundsException, NumberFormatException
+-JAVA API does not support all types of exceptions a program may raise. It only raises the most frequent ones only. So, your program may raise unknown exceptions also. For that, JAVA allows you to create user-defined exception handling methods and classes. They extend 'Runtime Exception' class.
+-JAVA provides exception handling through {try, catch, finally} and {throws}.
+	--When a method is not capable of being handled, then it is thrown.
+	--When a method is capable of being handled, we use try-catch-finally method. 'try' consists of those events which can cause exceptions, 'catch' is the actual exception handler and 'finally' is executed irrespective of whether an exception occurs.
+	--In order to avoid lengthy finally blocks of code, 'try with resources' is used. Basically, it is a special exception handling where a catch handles multiple exceptions. But they should not have inheritance relation.
+
+File Handling
+-Collections don't store the data, permanently. They store the data only as long as the program is running. After the program terminates, the data is also erased from memory. If we want to retain the data, permanently, we need files; therefore, file handling is important. Files store data in the form of streams, i.e., a sequence of bytes.
+Types of Streams:
+	--Byte Streams: Files store data in the form of streams, i.e., a sequence of bytes. Top most classes in byte streams: InputStreams (abstract class) for reading data to console, file or a network,  aka Source streams; OutputStreams (abstract class)  for writing data to console, file or a network aka Sink streams.
+	--Character Streams: They read (Reader) or write (Writer) data to console or file as a sequence of characters. These are also abstract classes. They are not generally used over a network.
+
+		Bytes 				Characters
+				FILES
+Read		FileInputStream			FileReader
+Write		FileOutputStream		FileWriter
+
+				BUFFERS
+Read 		BufferInputStream		BufferedReader
+Write 		BufferedOuputStream		BufferedWriter
+
+				JAVA PRIMITIVES
+Read 	 	DataInputStream			N/A
+Write 	 	DataOutputStream		N/A
+
+				THREADS
+Read		PipedInputStream		PipedReader
+Write		PipedOutputStream		PipedWriter
+
+				OBJECT SERIALIZATION
+Read		ObjectInputStream		N/A
+Write		ObjectOutputStream		N/A
+
+				PRINTING (console, file, network, anywhere)
+Write		PrintStream			PrintWriter
+
+-All file related classes belong to java.io package.
+-In JAVA, directory and files are treated as files only.
+-There are classes that deal with only files and file operations (CRUD, Renaming, Listing, Checking existence, checking attributes of file/directory).
+-Every file instance, is immutable, just like Strings. Once a file instance is created, cannot be changed.
+-Configuration file stores the information about configuration of any application being tested, in key-value pair form. (.properties) file. This file is not a part of executable code. To read data from the .properties file, we use the 'Properties' class.
+
+JAVA Database Connectivity (JDBC)
+-Files are unstructured (except XML which is semi-structured).
+-Higher probability of data redundancy occurring leading to data inconsistency when using files.
+-Files don't have backup may lead to permanent data loss.
+-Reading or writing the data from/to a file is difficult and also time-consuming, especially in the case if we have large data.
+-Updating or deleting data in a file is difficult and also time-consuming, especially in the case if we have large data.
+-Cannot store huge amount of data because multiple files need to be created, which can be cumbersome.
+-No proper security mechanism available in files for authenticating/ authorizing a user for access data.
+-We need some structure to avoid the above problems: therefore, we use JDBC API. JAVA only understands objects, not tables(rows, columns). The API convert the java objects into equivalent SQL queries and vice-versa: (1 Object = 1 row).
+-To connect (JAVA) applications to some database, we need drivers.
+-Types of drivers:
+	--Type 1: JDBC-ODBC Bridge Driver: can connect to literally any database because JDBC calls are converted into ODBC (Open Database Connectivity) calls, which are in turn, converted into native calls (specific to the database). These call conversions create a massive amount of overheads. Performance is substantially reduced.
+	--Type 2: Native-API Driver: partially written in JAVA. This driver converts JDBC calls into the native calls (specific to the library) and makes use of the particular database's client libraries. The call conversion overheads produced are less here. Thus, performance is a little improved. 
+	--Type 3: Network Protocol Driver: fully written in JAVA. Usually installed in middle-ware (i.e., application server). This driver converts JDBC directly or indirectly into vendor-specific database protocols. Performance is substantially improved, provided good network is available on the client machines.
+	--Type 4 (focused point of interest): Thin Driver: fully written in JAVA. This driver makes the calls directly from the JAVA API, into the database. No native libraries or conversions are done. This is the best driver to work with databases in JAVA. The only drawback here is, all database vendors (eg: Oracle, PostgreSQL, MS-SQL, MongoDB, Cassandra etc) need to provide their own implementation of Thin Driver, by coding an interface: 'java.sql.Driver', making it database dependent.
+-Steps to connect to the database:
+1. Load the driver (optional).
+Three ways to load the driver:
+	-Class.forName("fully qualified path of the driver class"): It loads and register the driver with the DriverManager class, during compilation.
+	-DriverManager.registerDriver(Driver driver): It loads and registers the driver dynamically (at Runtime).
+	-(.properties) file from Properties class: Store the data-source information in key-value pair form. Data-source has the connection string which has the driver name, URL to the database (localhost or remote IP Address), database name, username and password.
+-Required to connect to a database- Protocol: Sub-protocol: DSN Name = JDBC: database-dependent: Data-source name.
+2. Establish the connection/ session with the database. We use the getConnection() method from DriverManager class to do that. This method returns a connection interface.
+3. Create a Statement/ Prepared Statement/ Callable Statement which is used to execute the query. 
+This statement is created by using following, where 'con' means Connection:
+	-con.createStatement(): is used to execute static SQL statements, these are hardcoded by the developer. Each time a user wants to execute this, it will be re-compiled and executed. This leads to performance issues due to overheads.
+	-con.prepareStatement(): is a sub-interface of statement, it inherits statement. They are used to execute pre-compiled SQL statements. The query is prepared (compiled) only once and any future invocation of the query will be only execution. This reduces the overheads. It can also accept values at runtime which will be replaced in the query placeholders(?). JAVA types should match the SQL types.
+	-con.prepareCall()
+4. Execute the query through statement/ prepared statement.
+Types of statements in databases: DDL, DML, DQL and DCL.
+	-execute(): boolean- DDL statements are executed.
+	-executeUpdate(): int- DML statements are executed.
+	-executeQuery(): resultSet- DQL statements are executed.
+5. Handle Exceptions
+
+-DriverManager class
+--It is a class that maintains a list of drivers.
+--It can register or remove the driver from the list.
+
+JAVA 8 Features
+-Lambda expressions: they are anonymous functions. They enable you to write clean and concise code. They also reduce the lines of code required, but doesn't improve performance. They can be implemented with functional interfaces only.
+Format 1: () -> lambda function without parameter.
+Format 2: (param1, param2...) -> lambda function with parameters, varargs can also be used.
+-Functional interfaces: are those which has one single abstract method (SAM). They can have default and static method implementation. They enable backward compatibility (with earlier jdk versions).Any interface which has SAM, JAVA, by default, treats it as functional interface only. To make an interface a functional interface, we have to annotate it as '@FunctionalInterface' annotation.
+
+Website Development
+-HTML: to make web pages.
+-CSS: to style web pages.
+-JavaScript: to manipulate DOM (Document Object Model).
+
+Testing
+-SDLC Models: focus on Agile, Waterfall, DevOps.
+-Automation(Selenium, Cypress etc) as well as Manual.
+-We also have a Software Testing Life Cycle (STLC), similar to SDLC and is a part of SDLC.
+-Testing may happen after any stage throughout the SDLC, but must be done before releasing the software to production environment. This ensures quality standards and customer requirements are met.{Quality Engineering}
+-Check out the V model for seeing how testing and development happen in parallel.
+-Best practice- start testing as early as possible.
+-Testing also has some deadlines, which need to be met.
+-Ensure that previous features are tested and successfully finished before starting the testing of new features.
+-Best practice is that first do some manual testing and then go for automation testing.
+
+STLC 
+1. Requirements Gathering/Analysis: what needs to be tested.
+	-Entry criteria: documented requirements, acceptance criteria, and intended product architecture.
+	-Exit criteria: approved Requirement Traceability Matrix (RTM) and automation feasibility report.
+2. Test Planning: proper planning includes- scope of project, objectives of testing, approaches required to test, identify test deliverables, planning of resources required, risk analysis and mitigation, approvals also, if any.
+	-Entry criteria: exit criteria of requirements gathering.
+	-Exit criteria: approved test plan including timelines and risk/cost analysis.
+3. Test Case Development: Each testing scenario consists of several testcases which should be both positive and negative. Also get enough sample data.
+	-Entry criteria: exit criteria of test planning.
+	-Exit criteria: approved test cases and automation scripts.
+We perform smoke and sanity testing to check if critical functionality of software are functioning properly.
+4. Test Environment Setup: Tools/Platforms which we will use to run testcases, all such things need to be set up and ready.
+	-Entry criteria: system design and project architecture definitions.
+	-Exit criteria: a fully functional test environment and approved test cases.
+5. Test Execution: After setup is done, we need to execute the test cases and ensure all test cases are successfully passed. Requirement Traceability Matrix (RTM), a document, ensures all test cases are executed without missing any.
+	-Entry criteria: all exit criteria from above.
+	-Exit criteria: all tests are performed and results are documented.
+6. Testing Closure: Once all testcases have been executed, test closure happens by sending reports to the stakeholders of the project (customers, developers, managers, leads, testers etc). Test cases that do not pass are stored up in a 'defect tracker' report which is also sent.
+Test reports should include screenshots etc to better document the failure cases.
+	-Entry criteria: test results and logging from previous phases.
+	-Exit criteria: delivered and approved test closure report.
+
+-Testers don't write unit test cases because it causes excessive and unnecessary burden on them. Instead, they do functional testing. Most testers don't know programming a lot. Unit testing is mostly done by developers.
+-Testers may reach out to clients for clarification on any requirements.
+
+Quality Engineering (QE)
+-Systematic and disciplined approach to designing, developing and maintaining high quality products is quality engineering.
+-Includes Quality planning, control, assurance, and continuous improvement.
+-Benefits:
+	1. Improved customer satisfaction.
+	2. Reduced costs.
+	3. Faster time to market.
+	4. Improved product quality.
+
+Quality Control (QC)
+-Ensures if desired level of quality is met. It is all about improving customer satisfaction.
+
+Quality Assurance (QA)
+-Deals with verifying whether the product meets customer requirements and standards. Focuses on entire SDLC. It is all about ensuring that the product meets customer's expectations.
+
+Important points about Testing
+1. Independence: Test cases should be designed and executed by someone who is not involved in development process.
+2. Exhaustiveness: Ensures that all possible test scenarios are tested.
+3. Prioritization: Some testing is more important than some other. Some functionality are dependent on some others and therefore, prioritization is necessary.
+4. Traceability: Tests should be traceable back to the actual customer requirements. This ensures that we are focusing on actual customer needs. 
+5. Reusability: This ensures that the tests can be reused, reducing time and cost of software testing. (Frameworks)
+
+Principles of Testing (developed by ISTQB)
+1. Early testing saves time, effort and money
+2. Exhaustive testing is impossible
+3. Defect clustering
+4. Pesticide paradox: over time testcases become ineffective to test as the same testcases are used repeatedly. Thus, testcases should also be reviewed and upgraded. This is true when we add new functionality to existing functionality.
+5. Absence of errors is a fallacy
+6. Testing is context (tech environment) dependent
+7. Testing shows the presence of defects and not the absence of defects.
+
+Types of Testing
+-Dynamic Testing
+	1. Functional Testing: testing for requirements gathered from the customer. Things that the user should be able to do is called 'User Stories.'
+		--White box (can see developed code, tests internal logic) mostly done by developers.
+		--Black box (cannot see developed code, test only functionality, internal logic not tested)
+	2. Non-Functional Testing: Performance and Security testing, testing accessibility for specially-abled people. {should be done by highly experienced team only}
+
+-Static Testing (done by developers)
+	1. Reviews
+	2. Walkthrough
+	3. Inspection 
+***See Screenshot 'Types_of_Testing' for sub-types. Read about each type.
+-Always start testing from the smallest unit of the application (i.e, methods written inside a module) ands go up from there.
+
+-High Level Documents (System Design or Architecture) and Low Level Documents (System's smaller components: modules etc which are implementable) in SDLC.
+
+Levels of Testing (refer V model of SDLC)
+1. Unit Testing: Done by developers. Small units like methods, classes etc. are tested. Internal logic is tested. Different frameworks are used. (JAVA:  JUnit framework). All units are tested in isolation.
+2. Integration Testing: Done by developers and testers. Integrated modules etc are tested here. (eg: automation software- Selenium can check anything that runs on a web browser). 
+-Two approaches: 
+	-Top-Down: Higher level modules are tested first and we go down to the lower level modules.
+	-Bottom-Up: Low level modules are tested first and we climb up to the higher level modules.
+3. System Testing: Done by testers. Tests entire system- each and every functionality, end-to-end testing. (eg: JavaScript- Cypress)
+4. User Acceptance Testing: Done by testers and customers/end-users. This is broad in scope and is final overall testing of software. It determines whether software can be released to production.
+-Testing process flows from (1) to (4).
+
+Important Terms
+-Error: Human errors (eg: logical issues leading to errors and exceptions in code.)
+-Defect/Bug: Expected and actual values don't match.
+-Failure: End-users find out some other issues.
+
+Product vs Project
+-Product: Software built for multiple customers. (eg: MS Office)
+-Project: Software tailored for one client/ customer.
+
+Test Strategizing and Test Planning
+-Test Plan: Answers three questions- what, how and when to test. (In-depth testing details)
+Components:
+	1. Description of system/project
+	2. Understanding of the test requirements
+	3. Testing scope
+	4. Number of iterations for the types and levels of testing
+	5. Testing schedule
+	6. Run plan creation
+	7. Resource planning- hardware, software, staffing etc.
+	8. Roles and responsibilities
+	9. Assumptions and dependencies
+	10. Risks- mitigation and contingency plan
+	11. Communication plan
+	12. Metrics and statistics
+
+-Test Strategy: Well-designed approach to ensure test objectives are met. (High level, overall, not detailed at all)
+Components:
+	1. Objectives and critical success factors
+	2. Scope of testing
+	3. Testing approach
+	4. Types and levels of testing
+	5. Test data strategy
+	6. Test milestones
+	7. Test deliverables
+	8. Test criteria: entry/exit criteria
+	9. Defect management methodology
+	10. Roles and responsibilities
+	11. Assumptions and dependencies
+	12. Risks and issues identification and management
+	13. Managing exceptional situations- suspension and resumption criteria
+
+Test Design Techniques
+-Data is a piece of information that is used during test execution.
+-It's all about preparing data for testing.
+-It is done to reduce the amount of data required to test and increase the test coverage.
+1. Equivalence Class Partition (ECP)
+It means dividing data into various partitions i.e. ranges, value checks are performed.
+2. Boundary Value Analysis (BVA)
+Only check boundary values, i.e. near the extremes of the ranges made from ECP. Only (Min, Min-1, Min+1, Max, Max-1, Max+1) values which are valid for each and every partition will be checked.
+3. Decision Table (DT)
+It is also known as Cause and Effect Table. It is used when we deal with a large number of possible combinations/conditions of input. Every condition/combination of input must have a corresponding action associated with it.
+4. State Transition
+If there is a change in the input condition, the behaviour/state of the software will also change. This is called state transition.
+5. Error Guessing
+It is finding out bugs/errors which is done on the basis of past experiences. {basically, gut-feeling, cause there is no supporting documentation for it}
+6. Exploratory Testing: Trying to find bugs or defects by exploring the software. (no supporting documentation is available)
+
+-Use case: Functionality of application software derived from requirement analysis.
+-Test case: It provides a structured approach to verify the functionality of software applications.
+-Scenario: It is an event which needs to be tested.
+-Much of manual testing is about documentation: We should maintain proper documents detailing all the test scenarios, the test cases and results. You should also map them to the requirements that it fulfils and any pre-requisites are there to test some functionality.
+
+Requirement Traceability Matrix (RTM)
+-Traceability: identifying a test case or a group of test cases that belongs to a requirement. (mapping between requirements and test cases)
+-Test Environment Set up: installation of latest software (stable versions) and hardware.
+-Test Execution: start executing the testing work.
+
+Defect Management and Tracking
+-Defects/Issues/Bugs: mis-match/deviation between expected and actual values.
+-We use bug reporting tools like Bugzilla.
+-We use management tools like JIRA and Qmetry.
+
+When reporting bugs, there are three stages of bugs:
+	1. New: Bug is spotted.
+	2. Open: Bug is being processed.
+	3. Rejected: It is not a bug in the first place.
+	4. Hold: Deferred fixing of bug.
+-Bug is 'reproduceable' when it occurs again and again.
+-'Defect severity' defines how serious is the bug or how deep is the impact of the bug. (S0: Very High, S1: High, S2: Minor, S3: Low)
+-'Defect priority' (P0: Very High, P1: High, P2: Medium, P3: Low) is how sooner should the bug be resolved.
+
+H: High, L: Low, P: Priority, S: Severity
+-HS, HP: major functionality issues.
+-HS, LP: less important functionality is deviating from expected behaviour.
+-LS, HP: deviations in functionality.
+-LS, LP: UI issues like button placement, logo/company names spellings are incorrect etc. (least important)
+
+There are 1,2 and 3-Tier of Applications.
+
+Agile Terminologies
+-Agile: Iterative and Incremental Model.
+-Scrum: framework which follows agile methodology and gets work done.
+-Scrum team: team of 8-10 people which have developers and testers.
+-Epic: It is a large requirement, it is also called 'body of work', something which can be broken down into smaller chunks called as user stories. Each user story is a requirement from the customer. User stories are created by a product owner.
+-Product Backlog: is a document that contains a list of user stories, defines an epic, contains the status of each story and the acceptance report, created by product owner.
+-Sprint: is a period of time given to complete one or some of the user stories, mostly 2-3 weeks.
+-Sprint Planning: is a meeting to decide sprint iterations and finalise them. Meeting conducted between product owner, scrum master and the scrum team.
+-Scrum Meeting: is conducted by scrum master
+-Scrum Master: not a tester, not a developer, but is responsible for the whole development and testing process of the project.
+-Scrum Retrospective meeting: meeting after completion of project to discuss- what went well, what did not go well, what were the good practices followed and what were the challenges.
+-Story Point Estimation: rough estimation done by developer and the testers team for user stories. (eg: a story point = 6 hrs etc)
+-Burndown Chart: shows how much work is remaining, maintained by scrum master.
+-Roles in Agile: Project Owner (Business Analyst/Stakeholders/Solution Architect), Scrum Master, members of scrums (Testers and Developers).
+
+JIRA from Atlassian
+-Test and project management tool, is entirely cloud-based application.
+-Issue: is an epic/story/task/sub-task/bug/test.
+-Create a project and add members (vice-versa also can be done)- Project Owner (Business Analyst/Stakeholders/Solution Architect), Scrum Master, members of scrums (Testers and Developers).
+-Sprint Life cycle (view in Dashboard):
+	1. To-do list: Tasks left to be done.
+	2. In-progress: Tasks are being executed.
+	3. Done: Completed task.
+
+API Testing
+-Different devices communicating with each other over the internet/ any network do so, by using a Application Programming Interface(API).
+Devices (Laptops, Phones, Tablets etc) >> API >> Business Logic(application program) >> Database.
+-A service that runs on the web, are called web-services. Some of these web-services are called as web-APIs.
+-Web pages: A client requests for some data and the server responds to the client in the form of web pages.
+-Web services: they are operations performed by an application. They have only the business logic or actual application program. 
+-Micro services: Small independent units/ modules (services) of a software work independently and communicate over well defined APIs.
+
+Postman
+-Communicating with APIs and testing the API.
+-Not used for user interaction.
+-Cannot be used for performance testing (Load Runner, JMeter).
+-Cannot be used for security testing.
+Public APIs are accessible to everyone, whereas, Private APIs require authentication and authorization. When developing APIs, you must build private APIs.
+-Collection: is a set/ group of requests typically belonging to the same API.
+-Path and Query Parameter: Both of the ways are used to send the parameter to the API dynamically, via a HTTP request.
+	--Path Parameter: It is a part of the URL. They are used to read/ get a particular resource. They are represented as '{path variable name}'.
+	--Query Parameter: It is appended at the end of the URL. They are used to filter/ sort/ pagination (representing rows of tables in pages format).
+
+REST-Assured: Representational State Transfer (REST)
+-It is a JAVA library for testing and validating the RESTful web-service/ API.
+-It supports Behaviour Driven Development (BDD) like syntax-given, when, then notations.
+	--Given: it is a pre-requisite and all the details need to be provided. {BaseURL, BasePath, Headers- Content type and Authorization, Path Parameter, Query Parameter, Request Body/ Payload - post/put/path (optional).
+	--When: it is a user action and we specify the Resource, HTTP Request (post, get, put, patch, delete, trace, connections, head, options).
+	--Then: it is the outcome and we validate the response {response code (status code), response message, response time, response headers, response body}  
+-It allows integration with other testing framework (JUnit, TestNG).
+-It makes use of domain-specific language: it has built-in support for easy making of http requests and validation the responses.
+-It supports validation of various response formats (JSON, XML);
+-It has support for different authentication mechanisms - basic (non-encrypted), digest (encrypted), form-based, OAuth1.0, OAuth2.0, JSON Web Token (JwT). {OAuth: Open Authorization}
+-It also has built-in assertions.
+
+Selenium: Web-Automation
+-It is free and open-source tool for web (browsers/UI) automation.
+-It allows test automation of web-apps (contains dynamic contents and developed using JavaScript, PHP, Python etc.) and websites (majorly have static content developed using HTML/CSS; sometimes JavaScript) across different browsers and OSes.
+-It also supports multiple programming languages such as JAVA, JavaScript, Python, C#, Ruby, PHP etc for writing test automation scripts. No support for C++/ HTML/ CSS for scripts.
+-It can do everything: unit, system/ black- box, integration, end-to-end and regression testing.
+-In terms of performance, it is a little bit slow.
+-It can't test captcha, bar codes, verification codes, images, audios etc. But this automation can be achieved by integrating third-party tools with Selenium.
+-It cannot generate test results etc reports. But report generation can be achieved by integrating third-party tools with Selenium.
+-It doesn't support newer or less-famous browsers.
+-Components of Selenium (Suit):
+	--Web Driver: it allows tester to interact directly with the browsers through automation scripts using drivers. It does not support testing parallelly, but it can be achieved by integrating third-party tools (like TestNG).There are two modes to run test scripts:
+	1. Headed: has GUI and is majorly used by tester.
+	2. Head-less: doesn't have GUI and runs in the background on CLI.
+Selenium web driver architecture:
+	1. Selenium client/ class libraries or Selenium language bindings: it is the automation script written in any of the supported languages.
+	2. JSON Wire protocol(Selenium3.x)/ W3C protocol(Selenium4): it uses the drivers to run the automations scripts on http over http server. W3C protocol is merged into the language bindings in Selenium4.
+	3. Browser drivers: each browser has its own driver. It is required to run the scripts on the real browser.
+	4. Real browsers: actual browser.
+	--Remote Control: this was merged with web driver since Selenium2.0.
+	--IDE/ Recorder: records user actions by writing the scripts for it in the background, and testers may play them for testing (UI test Automation). The scripts can be modified as well. It can be used by installing a browser extension. It is majorly used for regression testing. The script is called Selenese script. If any changes are made to the UI (even smallest), the selenese script breaks and becomes inefficient, therefore, needs to be regenerated. This issue was resolved in Selenium3.x by including the use of multiple locators for  searching for UI elements.
+{In capstone project we have to use CSSselector and xpath only. Don't use other selectors, for learning purposes. Don't use the IDE.}
+	--Grid: for running multiple testcases across various browsers and OSes parallelly.
+-SearchContext is the top most class in Selenium hierarchy which provides two methods- findElement(By by) for single element and findElements(By by) for multiple elements; where 'by' is the locator on the basis of which to find. It's immediate child classes are: WebDriver and WebElement.
+
+
+Big Data Processing
+-V's of Big data: volume, variety, velocity, veracity, variability, value etc.
+-Horizontal and Vertical Scaling concept
+Tools for working with big data:
+	-- Hadoop: General working overview, Map-Reduce
+	--Apache Spark: Spark
+
+-Data Partitioning: Virtually divide your tables/ data on the basis of some relevant properties for improved performance. (logical)
+-Bucketing: Virtually partition within the pre-performed partitions for much more improved performance. (logical)
+
+OLTP (Online Transaction Processing): used only for real-time transactional processing.
+OLAP (Online Analytics Processing): OLTP copied to another data storage unit for performing analytical work. Earlier we could not perform updation operations. Databricks has resolved this by making an UPSERT (Update Insert) feature.
+
+DBMS Concepts
+-ACID properties
+	--Atomicity: transaction either commits successfully or rollback should happen.
+	--Consistency: after successful transaction the database should be in consistent data state only.
+	--Isolation: multiple transactions occur independently, without any interference with each other.
+	--Durability: system designed should last for a reasonably long amount of time or require only minor changes.
+-Commit, Rollback, Checkpoint concepts
+
+ETL concepts
+-Extract: acquire data from multiple data sources. Changed Data Capture (CDC) to identify any data points that experience changes.
+-Transform: performing some operations on the data that change it to a more meaningful representation/ format.
+-Load: load the transformed data onto the destination, for further use (eg: analytics).
+
+Ways of Data Storage
+-Enterprise Data Warehouse (EDW): old way, supports only structured data
+- Data Lake: recent new way, allows structured/ unstructured/ semi-structured data, layered architecture
+- Data Lakehouse: combination of warehouse as well as lake.
+
+Databricks
+-Cluster: basically your runtime environment.
+There are two types of clusters:
+1. All purpose cluster
+2. Job cluster: it is used for production workloads.
