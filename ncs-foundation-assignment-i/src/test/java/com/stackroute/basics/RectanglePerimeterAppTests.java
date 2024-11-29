@@ -1,6 +1,5 @@
 package com.stackroute.basics;
 
-import com.stackroute.basics.RectanglePerimeter;
 import org.junit.jupiter.api.*;
 
 import java.io.ByteArrayInputStream;

@@ -2,7 +2,6 @@ package com.stackroute.basics;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.stackroute.basics.RectanglePerimeter;
 import org.junit.jupiter.api.*;
 
 public class RectanglePerimeterTests {
