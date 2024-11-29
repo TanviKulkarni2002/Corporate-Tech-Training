@@ -502,6 +502,9 @@ DBMS Concepts
 	--Isolation: multiple transactions occur independently, without any interference with each other.
 	--Durability: system designed should last for a reasonably long amount of time or require only minor changes.
 -Commit, Rollback, Checkpoint concepts
+-Backups: Full and Incremental
+-Sub-queries: Correlated and Non-correlated
+-Window Functions: performs aggregate, ranking, analytical functions over a range of data rows (a window). It gives row-by-row results.
 
 ETL concepts
 -Extract: acquire data from multiple data sources. Changed Data Capture (CDC) to identify any data points that experience changes.
@@ -510,11 +513,24 @@ ETL concepts
 
 Ways of Data Storage
 -Enterprise Data Warehouse (EDW): old way, supports only structured data
-- Data Lake: recent new way, allows structured/ unstructured/ semi-structured data, layered architecture
-- Data Lakehouse: combination of warehouse as well as lake.
+-Data Lake: recent new way, allows structured/ unstructured/ semi-structured data, layered architecture
+-Data Lakehouse: combination of warehouse as well as lake.
+
+Apache Spark: Data Processing
+-Resilient Distributed Data (RDD): partitioned, immutable, lowest API available in spark
+	--Two operations can be performed: 1) transformation: changing the state of the data, 2)action: it doesn't return something absolutely new as no changes on the data are done.
 
 Databricks
 -Cluster: basically your runtime environment.
-There are two types of clusters:
+Types of clusters:
 1. All purpose cluster
-2. Job cluster: it is used for production workloads.
+2. Job compute cluster: it is used for production workloads. No idle time provided. Cluster is launched when required and scrapped immediately after use.
+
+Cloud Computing
+-Capital Expenditure (CapEx): one-time, up-front investment
+-Operating Expenditure (OpEx): recurring
+-Types of services or shared responsibility model: Infrastructure (IaaS), Platform (PaaS), Software (SaaS)
+-Types of Cloud: Public, Private and Hybrid
+
+Azure Data Factory (ADF)
+It is a cloud based ETL tool which has easy data integration services that enable automation of dataflows and transformation. We cannot perform very complex and big data transformations here. For that, we use Databricks. ADF is code-free, where we use the GUI to drag-and-drop the components and build the pipeline.
